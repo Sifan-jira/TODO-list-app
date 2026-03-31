@@ -9,7 +9,7 @@ export class TodoList {
     constructor(todos = []) {
         this.todos = todos;
     }
-
+    
     /**
      * Add a new todo to the list
      * @param {Todo} todo - Todo item to add
@@ -83,6 +83,18 @@ export class TodoList {
             default:
                 return [...this.todos];
         }
+    }
+
+    /**
+     * Get todos by project ID
+     * @param {string|null} projectId - Project ID to filter by (null for no project)
+     * @returns {Todo[]} Filtered array of todos
+     */
+    getTodosByProject(projectId) {
+        if (projectId === null || projectId === undefined) {
+            return this.todos.filter(todo => !todo.projectId);
+        }
+        return this.todos.filter(todo => todo.projectId === projectId);
     }
 
     /**
